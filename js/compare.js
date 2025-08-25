@@ -50,8 +50,25 @@ function SetCarToCompare(el, carClass) {
                 carArr.splice(index, 1);
             }       
         } 
+
+        botaoComparar();
+
     } else {
         throw "You need set a Car Class";
+    }
+}
+
+function botaoComparar() {
+    const compareBtn = document.querySelector('button[onclick="ShowCompare()"]');
+
+    if (carArr.length === 2) {
+        compareBtn.disabled = false;
+        compareBtn.style.opacity = 1;
+        compareBtn.style.cursor = "pointer";
+    } else {
+        compareBtn.disabled = true;
+        compareBtn.style.opacity = 0.5;
+        compareBtn.style.cursor = "not-allowed";
     }
 }
 
@@ -63,12 +80,32 @@ function ShowCompare() {
 
     UpdateCompareTable();
     document.getElementById("compare").style.display = "block";
+    document.body.classList.add("compare-open");
 }
 
 function HideCompare(){
-    document.getElementById("compare").style.display = "none"; 
+    document.getElementById("compare").style.display = "none";
+    document.body.classList.remove("compare-open");
 }
 
 function UpdateCompareTable() {
-    
+    for (let i = 0; i < carArr.length; i++) {
+        const car = carArr[i];
+
+        document.getElementById(`compare_image_${i}`).innerHTML = `<img src="${car.image}" width="100">`;
+        document.getElementById(`compare_modelo_${i}`).textContent = car.nome;
+        document.getElementById(`compare_alturacacamba_${i}`).textContent = car.alturaCacamba;
+        document.getElementById(`compare_alturaveiculo_${i}`).textContent = car.alturaVeiculo;
+        document.getElementById(`compare_alturasolo_${i}`).textContent = car.alturaSolo;
+        document.getElementById(`compare_capacidadecarga_${i}`).textContent = car.capacidadeCarga;
+        document.getElementById(`compare_motor_${i}`).textContent = car.motor;
+        document.getElementById(`compare_potencia_${i}`).textContent = car.potencia;
+        document.getElementById(`compare_volumecacamba_${i}`).textContent = car.volumeCacamba;
+        document.getElementById(`compare_roda_${i}`).textContent = car.roda;
+        document.getElementById(`compare_preco_${i}`).textContent = `R$ ${car.preco.toLocaleString('pt-BR')}`
+    }
 }
+
+document.addEventListener('DOMContentLoaded', function() {
+    botaoComparar();
+});

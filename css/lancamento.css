@@ -67,19 +67,20 @@ table {
   tr:nth-child(even) {background-color: #f2f2f2;}
 
 div#compare {
-    position: absolute;
+    position: fixed;
     display: none;
     width: 50vw;
     max-width: 800px;
     min-width: 400px;
-    height: 80vh;
-    max-height: 700px;
+    height: auto;
+    max-height: 90vh;
     min-height: 350px;
     background: #fff;
-    top: calc(100vh - 80%);
+    top: 5%;
     left: 25vw;
     border-radius: 10px;
     padding: 10px;
     -webkit-box-shadow: 1px 1px 6px 0px rgb(0 0 0 / 34%);
     box-shadow: 1px 1px 6px 0px rgb(0 0 0 / 34%);
+    overflow-y: auto;
 }
